@@ -65,6 +65,11 @@ hr{border:0;border-top:1px solid var(--rule)}
 .home ol,.home ul{padding-left:1.2rem}
 @media print{nav.side,.pn{display:none}.layout{display:block}body{background:#fff;color:#000}}
 
+
+.homelinks{display:flex;justify-content:space-between;gap:1rem;margin:0 0 .6rem;font-size:.9rem}
+.pn .toc-link{text-align:center}
+.toc{margin:1rem 0;padding-left:1.2rem}.toc>li{margin:.7rem 0;font-weight:600}
+.toc ol{font-weight:400;margin:.3rem 0 0;padding-left:1.4rem;columns:2 12rem}
 .search{margin:.4rem 0 .8rem}
 .search input{width:100%;font:inherit;padding:.3rem .5rem;border:1px solid var(--rule);background:var(--bg);color:var(--fg)}
 #hits{list-style:none;margin:.4rem 0;padding:0;font-size:.9rem}
