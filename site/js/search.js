@@ -7,8 +7,8 @@
  function build(){
   if(idx)return idx;
   if(window.SEARCH_INDEX){idx=window.SEARCH_INDEX.map(function(e){return{t:e[0],u:e[1],x:e[2],f:fold(e[2])};});}
-  else{idx=[].map.call(document.querySelectorAll('section.page'),function(s){
-   var h=s.querySelector('h1,h2'),x=s.textContent;return{t:h?h.textContent:s.id,u:'#'+s.id,x:x,f:fold(x)};});}
+  else{idx=[].map.call(document.querySelectorAll('template[data-page]'),function(t){
+   var x=t.content.textContent;return{t:t.getAttribute('data-title'),u:'#'+t.id,x:x,f:fold(x)};});}
   return idx;}
  box.addEventListener('input',function(){
   var q=fold(box.value.trim());out.innerHTML='';if(q.length<2)return;
