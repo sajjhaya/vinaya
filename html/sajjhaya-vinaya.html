@@ -78,7 +78,21 @@ hr{border:0;border-top:1px solid var(--rule)}
 mark{background:var(--tint);color:inherit;border-bottom:2px solid var(--accent)}
 .dl{display:flex;gap:1.2rem;flex-wrap:wrap;margin:1rem 0}
 main section.page{margin-bottom:4rem}
+/* phones: the menu folds behind a button in a bar that stays at the top */
+.menu-toggle{display:block;width:100%;font:inherit;font-weight:700;text-align:left;padding:.5rem .2rem;
+ background:none;border:0;color:var(--link);cursor:pointer}
+nav.side{position:sticky;top:0;z-index:10;background:var(--bg);padding-top:.3rem;padding-bottom:.3rem}
+nav.side .menu{display:none;max-height:calc(100vh - 3.5rem);overflow:auto;padding-bottom:.6rem}
+nav.side.open .menu{display:block}
+main [id]{scroll-margin-top:3.5rem}  /* a jump lands below the bar, not under it */
+@media (min-width:60rem){
+ .menu-toggle{display:none}
+ nav.side{padding:1.5rem 1rem}
+ nav.side .menu{display:block;max-height:none;overflow:visible;padding-bottom:0}
+}
 </style></head><body><div class="layout"><nav class="side">
+<button class="menu-toggle" type="button" aria-expanded="false" aria-controls="menu">☰ Contents</button>
+<div class="menu" id="menu">
 <p class="homelinks"><a href="#">← Contents</a> <a href="https://sajjhaya.github.io/">All books</a></p>
 <a class="site" href="#">Vinaya: Notes on the Bhikkhu Pātimokkha</a>
 <div class="search"><input id="q" type="search" placeholder="Search the book" aria-label="Search"></div>
@@ -275,7 +289,7 @@ main section.page{margin-bottom:4rem}
 <li><a href="#p-themes-the-harmony-of-the-sangha">The Harmony of the Saṅgha</a></li>
 <li><a href="#p-themes-rules-eased-when-keeping-them-did-harm">Rules Eased When Keeping Them Did Harm</a></li>
 </ol></details></li>
-</ul></nav><main><p class="kicker">Sajjhāya</p><h1>Vinaya: Notes on the Bhikkhu Pātimokkha</h1><h2>Contents</h2><ul class="toc">
+</ul></div></nav><main><p class="kicker">Sajjhāya</p><h1>Vinaya: Notes on the Bhikkhu Pātimokkha</h1><h2>Contents</h2><ul class="toc">
 <li><a href="#p-what-is-vinaya">What Is Vinaya?</a>
 </li>
 <li><a href="#p-why-is-vinaya">Why Is Vinaya?</a>
@@ -16462,6 +16476,14 @@ main section.page{margin-bottom:4rem}
    var li=document.createElement('li'),l=document.createElement('a'),s=document.createElement('small');
    l.href=e.u;l.textContent=e.t;s.textContent=(a?'…':'')+sn+'…';li.appendChild(l);li.appendChild(s);out.appendChild(li);n++;});
   if(!n)out.innerHTML='<li>No match.</li>';});
+})();
+</script><script>
+(function(){
+ var nav=document.querySelector('nav.side'),btn=nav&&nav.querySelector('.menu-toggle');
+ if(!btn)return;
+ function set(o){nav.classList.toggle('open',o);btn.setAttribute('aria-expanded',o?'true':'false');}
+ btn.addEventListener('click',function(){set(!nav.classList.contains('open'));});
+ nav.addEventListener('click',function(e){if(e.target.closest('a'))set(false);});
 })();
 </script><script>
 (function(){
